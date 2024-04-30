@@ -99,7 +99,6 @@ public class BoardController {
         Board board = new Board();
         Member member = new Member();
         member.setMbrNo(1);
-        member.setId("aaa");
         board.setMember(member);
 
         model.addAttribute("board", board);
@@ -108,7 +107,6 @@ public class BoardController {
 
     @PostMapping("/write")
     public String write(Board board){
-        board.setBno(11L);
         board.setViewCnt(0);
         board.setInDate(new Date());
         board.setUpDate(new Date());

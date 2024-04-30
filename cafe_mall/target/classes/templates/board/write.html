@@ -62,7 +62,7 @@
 <div th:replace="fragments/header::header"></div>
 <div layout:fragment="content" class="content">
     <div class="form-container">
-    <h2 th:class="writing-header"><p class="top-nav">게시물 쓰기</p></h2>
+    <h2 th:class="writing-header"><p class="top-nav">게시물 작성</p></h2>
     <form id="form" class="frm" method="post">
         <input type="hidden" name="bno" th:value="${board.bno}">
         <input type="hidden" name="member" th:value="${board.member.mbrNo}" readonly='readonly'>

@@ -2,7 +2,9 @@ package com.cafe.mall.board.service;
 
 import com.cafe.mall.board.model.Board;
 import com.cafe.mall.board.repository.BoardRepository;
+import com.cafe.mall.board.repository.BoardRepository2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +14,11 @@ import java.util.List;
 public class BoardService {
 
     @Autowired
-    private BoardRepository boardRepository;
+    private BoardRepository2 boardRepository;
 
     // 전체 게시물을 가져오는 메서드
     public List<Board> getList(){
-        return (List<Board>) boardRepository.findAll();
+        return (List<Board>) boardRepository.findAll(Sort.by(Sort.Direction.DESC, "bno"));
     }
 
     // 게시물 작성하는 메서드

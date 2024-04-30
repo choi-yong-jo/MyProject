@@ -87,12 +87,6 @@ class BoardServiceTest {
     @Test
     public void removeTest(){
         Long bno = 5L;
-//        Board board = boardService.read(bno);
-//        if(board != null){
-//            boardService.remove(bno);
-//        }
-        // 위에 주석 처리된 내용을 간단하게 아래 코드로 쓸 수 있음
-
         assertTrue(boardService.read(bno)!=null);
         boardService.remove(bno);
         assertEquals(boardService.read(bno), null);
