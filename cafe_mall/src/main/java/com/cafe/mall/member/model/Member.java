@@ -21,9 +21,11 @@ public class Member {
 
 	@Column(name = "member_id")
 	private String id;
-	
+
+	@Column(name = "member_pw")
 	private String password;
-	
+
+	@Column(name = "member_nm")
 	private String name;
 	
 	private String phone;

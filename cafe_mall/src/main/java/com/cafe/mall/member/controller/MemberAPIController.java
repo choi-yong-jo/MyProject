@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("memberAPI")
+@RequestMapping("api/member")
 @Slf4j
 public class MemberAPIController {
 
