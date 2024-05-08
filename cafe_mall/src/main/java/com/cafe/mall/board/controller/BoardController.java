@@ -3,6 +3,7 @@ package com.cafe.mall.board.controller;
 import com.cafe.mall.board.model.Board;
 import com.cafe.mall.board.service.BoardService;
 import com.cafe.mall.member.model.Member;
+import com.cafe.mall.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -30,6 +31,9 @@ public class BoardController {
 
     @Autowired
     BoardService boardService;
+
+    @Autowired
+    MemberService memberService;
 
     @Value("${uploadPath}")
     private String uploadPath;
@@ -66,7 +70,7 @@ public class BoardController {
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
-    @RequestMapping("deleteFile")
+    @RequestMapping("/deleteFile")
     public ResponseEntity<String> deleteFile(String fileName){
         System.out.println("fileName = " + fileName);
 
@@ -83,6 +87,9 @@ public class BoardController {
     public String getList(Model model){
         List<Board> list = boardService.getList();
         model.addAttribute("list", list);
+
+        List<Member> list2 = memberService.findAll();
+        model.addAttribute("mlist", list2);
 
         return "/board/list";
     }

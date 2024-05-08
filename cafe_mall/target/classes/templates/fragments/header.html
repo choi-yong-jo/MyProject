@@ -3,12 +3,27 @@
 <div th:fragment="header">
     <div id="header">
         <ul>
-            <li><a href="">Home</a></li><li>
-            <a href="" th:href="@{/board/list}">Board</a></li><li>
-            <a href="">Book</a></li><li>
-            <a href="">FAQ</a></li><li>
-            <a href="" th:href="@{/home/login}">Login</a></li>
+            <li><a href="" th:text="Home"/></li>
+            <li><a href="" th:href="@{/board/list}" th:text="Board"/></li>
+            <li><a href="" th:text="Book"/></li>
+            <li><a href="" th:text="FAQ"/></li>
+            <li><a href="" th:href="@{/home/login}" th:text="Login"/></li>
+
+<!--            <li th:each="member : ${mlist}" th:text="|${member.id}|" th:href="" ></li>-->
         </ul>
+
+<!--        <ul th:each="member : ${mlist}">-->
+<!--            <li th:href="" th:text="${member.id}"></li>-->
+<!--        </ul>-->
     </div>
+
+<!--    <div>-->
+<!--        <table>-->
+<!--            <tr th:each="member : ${mlist}">-->
+<!--                <td th:text="${member.id}" th:class="no"/>-->
+<!--            </tr>-->
+<!--            </c:forEach>-->
+<!--        </table>-->
+<!--    </div>-->
 </div>
 </html>
