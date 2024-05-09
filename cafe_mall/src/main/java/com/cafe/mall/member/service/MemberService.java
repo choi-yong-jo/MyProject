@@ -5,6 +5,7 @@ import com.cafe.mall.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,12 +27,17 @@ public class MemberService {
 		return member;
 	}
 
+	public List<Member> findById(String id){
+		List<Member> member = memberRepository.findById(id);
+		return member;
+	}
+
 	public void deleteById(Integer mbrNo){
 		memberRepository.deleteById(mbrNo);
 	}
 
 	public Member save(Member member){
-//		member.setCreateDt(LocalDateTime.now());
+		member.setCreateDt(LocalDateTime.now());
 		memberRepository.save(member);
 		return member;
 	}

@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(value = {"com.cafe.mall.common.mapper"}, sqlSessionFactoryRef = "SqlSessionFactory")
+@MapperScan(value = {"com.cafe.mall.common.mapper"}, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MyBatisConfig {
 
     @Value("${spring.datasource.mapper-locations}")
@@ -27,7 +27,7 @@ public class MyBatisConfig {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name = "SqlSessionFactory")
+    @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory SqlSessionFactory(@Qualifier("dataSource") DataSource DataSource, ApplicationContext applicationContext) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(DataSource);
@@ -36,8 +36,8 @@ public class MyBatisConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Bean(name = "SqlSessionTemplate")
-    public SqlSessionTemplate SqlSessionTemplate(@Qualifier("SqlSessionFactory") SqlSessionFactory firstSqlSessionFactory) {
+    @Bean(name = "sqlSessionTemplate")
+    public SqlSessionTemplate SqlSessionTemplate(@Qualifier("sqlSessionFactory") SqlSessionFactory firstSqlSessionFactory) {
         return new SqlSessionTemplate(firstSqlSessionFactory);
     }
 

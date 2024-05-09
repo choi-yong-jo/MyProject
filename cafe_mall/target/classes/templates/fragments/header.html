@@ -12,18 +12,18 @@
 <!--            <li th:each="member : ${mlist}" th:text="|${member.id}|" th:href="" ></li>-->
         </ul>
 
-<!--        <ul th:each="member : ${mlist}">-->
+<!--        <ul th:each="member:${mlist}">-->
 <!--            <li th:href="" th:text="${member.id}"></li>-->
 <!--        </ul>-->
     </div>
 
-<!--    <div>-->
-<!--        <table>-->
-<!--            <tr th:each="member : ${mlist}">-->
-<!--                <td th:text="${member.id}" th:class="no"/>-->
-<!--            </tr>-->
-<!--            </c:forEach>-->
-<!--        </table>-->
-<!--    </div>-->
+    <div>
+        <table>
+            <tr th:each="menu : ${mlist}">
+                <td th:text="${menu.menuNm}" th:class="no"/>
+            </tr>
+            </c:forEach>
+        </table>
+    </div>
 </div>
 </html>

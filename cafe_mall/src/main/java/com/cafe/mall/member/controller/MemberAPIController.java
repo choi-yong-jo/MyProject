@@ -2,6 +2,8 @@ package com.cafe.mall.member.controller;
 
 import com.cafe.mall.member.model.Member;
 import com.cafe.mall.member.service.MemberService;
+import com.cafe.mall.menu.model.Menu;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,8 @@ import java.util.Optional;
 @Slf4j
 public class MemberAPIController {
 
-    @Autowired
-    MemberService memberService;
+    @Resource(name="memberService")
+    private MemberService memberService;
 
     // 모든 회원 조회
     @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -33,6 +35,14 @@ public class MemberAPIController {
     public ResponseEntity<Member> getMember(@PathVariable("mbrNo") Integer mbrNo) {
         Optional<Member> member = memberService.findById(mbrNo);
         return new ResponseEntity<Member>(member.get(), HttpStatus.OK);
+    }
+
+    // 회원 아이디로 한명의 회원 조회
+    @GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public Member searchMemberId(@PathVariable("id") String id) {
+        List<Member> memberList = memberService.findById(id);
+        Member member = memberList.get(0);
+        return member;
     }
 
     // 회원번호로 회원 삭제

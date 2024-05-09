@@ -3,7 +3,8 @@ package com.cafe.mall.board.controller;
 import com.cafe.mall.board.model.Board;
 import com.cafe.mall.board.service.BoardService;
 import com.cafe.mall.member.model.Member;
-import com.cafe.mall.member.service.MemberService;
+import com.cafe.mall.menu.model.Menu;
+import com.cafe.mall.menu.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -33,7 +34,7 @@ public class BoardController {
     BoardService boardService;
 
     @Autowired
-    MemberService memberService;
+    MenuService menuService;
 
     @Value("${uploadPath}")
     private String uploadPath;
@@ -87,9 +88,7 @@ public class BoardController {
     public String getList(Model model){
         List<Board> list = boardService.getList();
         model.addAttribute("list", list);
-
-        List<Member> list2 = memberService.findAll();
-        model.addAttribute("mlist", list2);
+        model.addAttribute("mlist", getMenuList());
 
         return "/board/list";
     }
@@ -140,6 +139,11 @@ public class BoardController {
     public String remove(Long bno){
         boardService.remove(bno);
         return "redirect:/board/list";
+    }
+
+    public List<Menu> getMenuList() {
+        List<Menu> menuList = menuService.findAll();
+        return menuList;
     }
 
 }
