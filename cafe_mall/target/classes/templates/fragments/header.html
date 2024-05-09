@@ -3,27 +3,29 @@
 <div th:fragment="header">
     <div id="header">
         <ul>
-            <li><a href="" th:text="Home"/></li>
-            <li><a href="" th:href="@{/board/list}" th:text="Board"/></li>
-            <li><a href="" th:text="Book"/></li>
-            <li><a href="" th:text="FAQ"/></li>
-            <li><a href="" th:href="@{/home/login}" th:text="Login"/></li>
+<!--            <li><a href="" th:text="Home"/></li>-->
+<!--            <li><a href="" th:href="@{/board/list}" th:text="Board"/></li>-->
+<!--            <li><a href="" th:text="Book"/></li>-->
+<!--            <li><a href="" th:text="FAQ"/></li>-->
+<!--            <li><a href="" th:href="@{/home/login}" th:text="Login"/></li>-->
 
-<!--            <li th:each="member : ${mlist}" th:text="|${member.id}|" th:href="" ></li>-->
+            <li th:each="menu:${mlist}"><a href="" th:text="${menu.menuNm}" th:href="" /></li>
+
         </ul>
 
-<!--        <ul th:each="member:${mlist}">-->
-<!--            <li th:href="" th:text="${member.id}"></li>-->
+<!--        <ul th:each="menu:${mlist}">-->
+<!--            <li th:text="${menu.menuNm}">주문상품</li>-->
 <!--        </ul>-->
+
     </div>
 
-    <div>
-        <table>
-            <tr th:each="menu : ${mlist}">
-                <td th:text="${menu.menuNm}" th:class="no"/>
-            </tr>
-            </c:forEach>
-        </table>
-    </div>
+<!--    <div>-->
+<!--        <table>-->
+<!--            <tr th:each="menu : ${mlist}">-->
+<!--                <td th:text="${menu.menuNm}" th:class="no"/>-->
+<!--            </tr>-->
+<!--            </c:forEach>-->
+<!--        </table>-->
+<!--    </div>-->
 </div>
 </html>
