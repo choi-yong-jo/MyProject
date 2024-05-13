@@ -3,13 +3,13 @@
 <div th:fragment="header">
     <div id="header">
         <ul>
-<!--            <li><a href="" th:text="Home"/></li>-->
-<!--            <li><a href="" th:href="@{/board/list}" th:text="Board"/></li>-->
-<!--            <li><a href="" th:text="Book"/></li>-->
-<!--            <li><a href="" th:text="FAQ"/></li>-->
-<!--            <li><a href="" th:href="@{/home/login}" th:text="Login"/></li>-->
+            <li><a href="" th:text="Home"/></li>
+            <li><a href="" th:href="@{/board/list}" th:text="Board"/></li>
+            <li><a href="" th:text="Book"/></li>
+            <li><a href="" th:text="FAQ"/></li>
+            <li><a href="" th:href="@{/home/login}" th:text="Login"/></li>
 
-            <li th:each="menu:${mlist}"><a href="" th:text="${menu.menuNm}" th:href="" /></li>
+<!--            <li th:each="menu:${mlist}"><a href="" th:text="${menu.menuNm}" th:href="" /></li>-->
 
         </ul>
 
