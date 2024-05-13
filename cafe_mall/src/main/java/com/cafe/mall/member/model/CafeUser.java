@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -21,5 +24,8 @@ public class CafeUser {
     private String userPw;
 
     private String userNm;
+
+    @CreationTimestamp        // Hibernate에서 insert 쿼리가 발생 시 현재시간이 생성
+    private LocalDateTime createDt;
 
 }
