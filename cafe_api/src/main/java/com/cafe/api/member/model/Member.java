@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,19 +14,23 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@SequenceGenerator(name = "member_seq", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
 public class Member {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)	// Hibernate postgreSQL에서 PK 값 자동증가 처리
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq")	// Hibernate postgreSQL에서 PK 값 자동증가 처리
 	private int mbrNo;
 
-	@Column(name = "member_id")
+	@Column(name = "member_id", nullable = false)
+	@NotNull
 	private String id;
 
-	@Column(name = "member_pw")
+	@Column(name = "member_pw", nullable = false)
+	@NotNull
 	private String password;
 
-	@Column(name = "member_nm")
+	@Column(name = "member_nm", nullable = false)
+	@NotNull
 	private String name;
 	
 	private String phone;

@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(value = {"com.cafe.api.common.mapper"}, sqlSessionFactoryRef = "SqlSessionFactory")
+@MapperScan(value = {"com.cafe.api.*.mapper"}, sqlSessionFactoryRef = "SqlSessionFactory")
 public class MyBatisConfig {
 
     @Value("${spring.datasource.mapper-locations}")
