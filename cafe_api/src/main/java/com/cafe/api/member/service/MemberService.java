@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +35,7 @@ public class MemberService {
 
 	@Transactional("transactionManager")
 	public Member save(Member member){
-//		member.setCreateDt(LocalDateTime.now());
+		member.setCreateDt(LocalDateTime.now());
 		memberRepository.save(member);
 		return member;
 	}
@@ -46,7 +47,7 @@ public class MemberService {
 			e.get().setMbrNo(member.getMbrNo());
 			e.get().setId(member.getId());
 			e.get().setName(member.getName());
-//			e.get().setUpdateDt(LocalDateTime.now());
+			e.get().setUpdateDt(LocalDateTime.now());
 			memberRepository.save(member);
 		}
 	}
