@@ -3,13 +3,11 @@ package com.cafe.api.board.controller;
 import com.cafe.api.board.model.Board;
 import com.cafe.api.board.service.BoardService;
 import com.cafe.api.board.dto.BoardResponseDTO;
-import com.cafe.api.member.model.Member;
 import com.cafe.api.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

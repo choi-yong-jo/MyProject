@@ -27,16 +27,19 @@ public class MemberService {
 		return member;
 	}
 
+	@Transactional("transactionManager")
 	public void deleteById(Integer mbrNo){
 		memberRepository.deleteById(mbrNo);
 	}
 
+	@Transactional("transactionManager")
 	public Member save(Member member){
 //		member.setCreateDt(LocalDateTime.now());
 		memberRepository.save(member);
 		return member;
 	}
 
+	@Transactional("transactionManager")
 	public void updateById(Integer mbrNo, Member member){
 		Optional<Member> e = memberRepository.findById(mbrNo);
 		if(e.isPresent()){
