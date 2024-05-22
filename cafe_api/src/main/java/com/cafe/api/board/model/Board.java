@@ -28,11 +28,17 @@ public class Board {
 
     private int mbrNo;
 
+    @Column(name = "create_dt")
     @Temporal(value = TemporalType.TIMESTAMP)
     private LocalDateTime inDate;
 
+    private String createId;
+
+    @Column(name = "update_dt")
     @Temporal(value = TemporalType.TIMESTAMP)
     private LocalDateTime upDate;
+
+    private String updateId;
 
     @Override
     public String toString() {

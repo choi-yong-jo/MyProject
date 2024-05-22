@@ -1,10 +1,14 @@
 package com.cafe.api.common.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Arrays;
+import java.util.List;
 
 // 1. 원격 프로그램으로 등록
 @RestController
@@ -14,6 +18,11 @@ public class HomeController {
     public String main() {
         System.out.println("Hello");
         return "Hello World";
+    }
+
+    @GetMapping("/showMe")
+    public List<String> reactTest() {
+        return Arrays.asList("first","second");
     }
 
     @PostMapping("/loginProc")

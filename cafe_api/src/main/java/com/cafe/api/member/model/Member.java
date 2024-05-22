@@ -19,7 +19,7 @@ public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq")	// Hibernate postgreSQL에서 PK 값 자동증가 처리
-	private int mbrNo;
+	private Long mbrNo;
 
 	@Column(name = "member_id", nullable = false)
 	@NotNull
@@ -32,14 +32,27 @@ public class Member {
 	@Column(name = "member_nm", nullable = false)
 	@NotNull
 	private String name;
-	
+
+	@Column(name = "mobile", nullable = false)
+	@NotNull
 	private String phone;
 	
 	private String email;
 
+	private String zipcode;
+
+	private String address;
+
+	private String addressDetail;
+
 	@CreationTimestamp		// Hibernate에서 insert 쿼리가 발생 시 현재시간이 생성
 	private LocalDateTime createDt;
 
+	private String createId;
+
 	@UpdateTimestamp		// Hibernate에서 update 쿼리가 발생 시 현재시간이 생성
 	private LocalDateTime updateDt;
+
+	private String updateId;
+
 }

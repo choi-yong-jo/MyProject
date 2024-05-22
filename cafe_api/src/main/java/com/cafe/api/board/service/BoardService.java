@@ -40,6 +40,7 @@ public class BoardService {
         member.setId("pide");
         member.setPassword("1004");
         member.setName("test");
+        member.setPhone("01012345678");
         memberService.save(member);
     }
 

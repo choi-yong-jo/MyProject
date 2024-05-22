@@ -22,7 +22,6 @@ public class Menu {
 
     private String menuNm;
 
-    @Column(name = "url")
     private String menuUrl;
 
 }
