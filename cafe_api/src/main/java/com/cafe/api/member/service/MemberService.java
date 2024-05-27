@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,11 @@ public class MemberService {
 	public Optional<Member> findById(Integer mbrNo){
 		Optional<Member> member = memberRepository.findById(mbrNo);
 		return member;
+	}
+
+	public List<Member> findByNm(String name) {
+		final List<Member> members = memberRepository.findByName(name);
+		return members.isEmpty() ? Collections.emptyList() : members;
 	}
 
 	@Transactional("transactionManager")

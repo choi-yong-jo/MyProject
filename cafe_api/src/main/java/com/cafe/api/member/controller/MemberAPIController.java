@@ -35,6 +35,12 @@ public class MemberAPIController {
         return new ResponseEntity<Member>(member.get(), HttpStatus.OK);
     }
 
+    @PostMapping(value = "/findNm")
+    public List<Member> getMembers(@RequestBody Member member) {
+        List<Member> members = memberService.findByNm(member.getName());
+        return members;
+    }
+
     // 회원번호로 회원 삭제
     @DeleteMapping(value = "/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Void> deleteMember(@PathVariable("mbrNo") Integer mbrNo) {
