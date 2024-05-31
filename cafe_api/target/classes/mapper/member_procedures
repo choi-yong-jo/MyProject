@@ -1,0 +1,38 @@
+DROP FUNCTION IF EXISTS sp_find_member_nm;
+
+CREATE OR REPLACE FUNCTION sp_find_member_nm(str varchar)
+RETURNS SETOF member
+AS $$
+SELECT *
+FROM member
+WHERE member_nm LIKE CONCAT(str, '%');
+$$ LANGUAGE SQL;
+
+select sp_find_member_nm('test');
+
+
+----------------------------------------------------------
+DROP PROCEDURE IF EXISTS sp_find_member_id;
+
+CREATE OR REPLACE PROCEDURE sp_find_member_id(str inout varchar)
+language plpgsql
+as $$
+begin
+SELECT *
+FROM member
+WHERE member_id LIKE CONCAT(str, '%');
+end;
+$$;
+
+
+call sp_find_member_id('test');
+----------------------------------------------------------
+
+
+
+
+
+----------------------------------------------------------
+
+
+

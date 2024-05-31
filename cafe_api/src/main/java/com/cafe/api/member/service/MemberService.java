@@ -29,9 +29,9 @@ public class MemberService {
 		return member;
 	}
 
-	public List<Member> findByNm(String name) {
-		final List<Member> members = memberRepository.findByName(name);
-		return members.isEmpty() ? Collections.emptyList() : members;
+	public List<Member> findByNm(Member member) {
+		List<Member> members = memberRepository.searchMemberNm(member);
+		return members.isEmpty() ? Collections.emptyList() : members.stream().toList();
 	}
 
 	@Transactional("transactionManager")

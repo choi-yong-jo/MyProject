@@ -37,7 +37,7 @@ public class MemberAPIController {
 
     @PostMapping(value = "/findNm")
     public List<Member> getMembers(@RequestBody Member member) {
-        List<Member> members = memberService.findByNm(member.getName());
+        List<Member> members = memberService.findByNm(member);
         return members;
     }
 

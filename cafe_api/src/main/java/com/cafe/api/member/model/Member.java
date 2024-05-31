@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @SequenceGenerator(name = "member_seq", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
+@NamedStoredProcedureQuery(name = "sp_find_member_nm", procedureName = "sp_find_member_nm", resultClasses = Member.class
+		, parameters = {@StoredProcedureParameter(name = "str", type = String.class)})
 public class Member {
 
 	@Id
