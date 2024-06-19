@@ -42,7 +42,7 @@ public class MemberAPIController {
     // 회원번호로 한명의 회원 조회
     @GetMapping(value = "/select", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<?> searchMember(@RequestBody MemberRequestDTO requestDTO) {
-        List<Member> list = new ArrayList<>();
+        List<Member> list;
         if (requestDTO == null) {
             list = memberService.findAll();
         } else {
