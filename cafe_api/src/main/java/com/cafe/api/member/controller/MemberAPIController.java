@@ -73,17 +73,35 @@ public class MemberAPIController {
     }
 
     // 회원번호로 회원 삭제
-    @DeleteMapping(value = "/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Void> deleteMember(@PathVariable("mbrNo") Integer mbrNo) {
-        memberService.deleteById(mbrNo);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    @DeleteMapping(value = "/delete", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<?> deleteMember(@RequestParam("mbrNo") Integer mbrNo) {
+        MemberResponseDTO responseDTO = new MemberResponseDTO();
+        HttpStatus statusCode;
+        if (memberService.deleteById(mbrNo)) {
+            statusCode = HttpStatus.OK;
+            responseDTO.setMsg("삭제되었습니다.");
+        } else {
+            statusCode = HttpStatus.NOT_MODIFIED;
+            responseDTO.setMsg("삭제 실패하였습니다.");
+        }
+        responseDTO.setResultCode(String.valueOf(statusCode));
+        return new ResponseEntity<>(responseDTO, statusCode);
     }
 
     // 회원번호로 회원 수정(mbrNo로 회원을 찾아 Member 객체의 id, name로 수정함)
-    @PutMapping(value = "/update/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Member> updateMember(@PathVariable("mbrNo") Integer mbrNo, @RequestBody Member member) {
-        memberService.updateById(mbrNo, member);
-        return new ResponseEntity<Member>(member, HttpStatus.OK);
+    @PutMapping(value = "/update", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<?> updateMember(@RequestParam("mbrNo") Integer mbrNo, @RequestBody Member member) {
+        MemberResponseDTO responseDTO = new MemberResponseDTO();
+        HttpStatus statusCode;
+        if (memberService.updateById(mbrNo, member)) {
+            statusCode = HttpStatus.OK;
+            responseDTO.setMsg("수정되었습니다.");
+        } else {
+            statusCode = HttpStatus.NOT_MODIFIED;
+            responseDTO.setMsg("수정 실패하였습니다.");
+        }
+        responseDTO.setResultCode(String.valueOf(statusCode));
+        return new ResponseEntity<>(responseDTO, statusCode);
     }
 
     // 회원 입력

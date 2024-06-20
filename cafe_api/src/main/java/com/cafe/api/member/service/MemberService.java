@@ -35,8 +35,14 @@ public class MemberService {
 	}
 
 	@Transactional("transactionManager")
-	public void deleteById(Integer mbrNo){
-		memberRepository.deleteById(mbrNo);
+	public boolean deleteById(Integer mbrNo){
+		boolean result = false;
+		Optional<Member> e = memberRepository.findById(mbrNo);
+		if(e.isPresent()){
+			memberRepository.deleteById(mbrNo);
+			result = true;
+		}
+		return result;
 	}
 
 	@Transactional("transactionManager")
@@ -47,15 +53,15 @@ public class MemberService {
 	}
 
 	@Transactional("transactionManager")
-	public void updateById(Integer mbrNo, Member member){
+	public boolean updateById(Integer mbrNo, Member member){
+		boolean result = false;
 		Optional<Member> e = memberRepository.findById(mbrNo);
+		member.setMbrNo(Long.valueOf(mbrNo));
 		if(e.isPresent()){
-			e.get().setMbrNo(member.getMbrNo());
-			e.get().setId(member.getId());
-			e.get().setName(member.getName());
-			e.get().setUpdateDt(LocalDateTime.now());
 			memberRepository.save(member);
+			result = true;
 		}
+		return result;
 	}
 
 }
