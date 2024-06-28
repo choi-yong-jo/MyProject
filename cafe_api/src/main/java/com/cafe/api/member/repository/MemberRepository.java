@@ -14,13 +14,9 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
 	Member save(Member member);
 
-	List<Member> findById(String id);
-
 //	@Procedure(procedureName = "sp_find_member_nm")
-	@Query(value = "select sp_find_member_nm(:#{#member.name})", nativeQuery = true)
-//	@Query(value = "select m from Member m where m.name like :#{#member.name}||'%'")
-	List<Member> searchMemberNm(@Param(value = "member") Member member);
-
-	List<Member> findByNameLike(String name);
+//	@Query(value = "select sp_find_member(:#{#member.id}, :#{#member.name}) m", nativeQuery = true)
+	@Query(value = "select m from Member m where m.id = :#{#member.id} and m.name like :#{#member.name}||'%'")
+	List<Member> searchMember(@Param(value = "member") Member member);
 
 }

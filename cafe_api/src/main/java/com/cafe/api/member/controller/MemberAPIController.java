@@ -40,14 +40,15 @@ public class MemberAPIController {
     }
 
     // 회원번호로 한명의 회원 조회
-    @GetMapping(value = "/select", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @PostMapping(value = "/select", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<?> searchMember(@RequestBody MemberRequestDTO requestDTO) {
         List<Member> list;
         if (requestDTO == null) {
             list = memberService.findAll();
         } else {
-            Optional<Member> member = memberService.findById(requestDTO.getMbrNo());
-            list = member.stream().toList();
+            list = memberService.searchMember(requestDTO);
+//            Optional<Member> member = memberService.findById(requestDTO.getMbrNo());
+//            list = member.stream().toList();
         }
 
         MemberResponseDTO responseDTO = new MemberResponseDTO();
@@ -60,16 +61,10 @@ public class MemberAPIController {
     }
 
     // 회원번호로 한명의 회원 조회
-    @GetMapping(value = "/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Member> getMember(@PathVariable("mbrNo") Integer mbrNo) {
+    @GetMapping(value = "/select", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<Member> getMember(@RequestParam("mbrNo") Integer mbrNo) {
         Optional<Member> member = memberService.findById(mbrNo);
         return new ResponseEntity<Member>(member.get(), HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/findNm")
-    public List<Member> getMembers(@RequestBody Member member) {
-        List<Member> members = memberService.findByNm(member);
-        return members;
     }
 
     // 회원번호로 회원 삭제

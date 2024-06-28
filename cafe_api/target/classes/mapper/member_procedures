@@ -1,38 +1,80 @@
+DROP FUNCTION IF EXISTS sp_find_member;
+
+CREATE OR REPLACE FUNCTION sp_find_member(id varchar, nm varchar)
+RETURNS member
+AS $$
+SELECT *
+FROM member
+WHERE 1=1
+AND member_id = id
+AND member_nm LIKE CONCAT(nm, '%');
+$$ LANGUAGE SQL;
+
+select sp_find_member('test','테스');
+
+-------------------------------------------------------------------
+
+DROP FUNCTION IF EXISTS sp_find_member_id;
+
+CREATE OR REPLACE FUNCTION sp_find_member_id(id varchar)
+RETURNS member
+AS $$
+SELECT *
+FROM member
+WHERE member_id LIKE CONCAT(id, '%');
+$$ LANGUAGE SQL;
+
+select sp_find_member_id('tes');
+
+-------------------------------------------------------------------
+
 DROP FUNCTION IF EXISTS sp_find_member_nm;
 
 CREATE OR REPLACE FUNCTION sp_find_member_nm(str varchar)
-RETURNS SETOF member
+RETURNS member
 AS $$
 SELECT *
 FROM member
 WHERE member_nm LIKE CONCAT(str, '%');
 $$ LANGUAGE SQL;
 
+
 select sp_find_member_nm('test');
 
+-------------------------------------------------------------------
+DROP PROCEDURE IF EXISTS sp_find_member_id_nm;
 
-----------------------------------------------------------
-DROP PROCEDURE IF EXISTS sp_find_member_id;
-
-CREATE OR REPLACE PROCEDURE sp_find_member_id(str inout varchar)
+CREATE OR REPLACE PROCEDURE sp_find_member_id_nm(in id varchar,in nm varchar)
 language plpgsql
-as $$
-begin
-SELECT *
-FROM member
-WHERE member_id LIKE CONCAT(str, '%');
-end;
-$$;
+as $procedure$
+BEGIN
+	SELECT *
+	FROM member
+	WHERE 1=1
+	AND member_id = id
+	AND member_nm LIKE CONCAT(nm, '%');
+END;
+$procedure$;
 
 
-call sp_find_member_id('test');
-----------------------------------------------------------
+call sp_find_member_id_nm('test','테스트');
+
+-------------------------------------------------------------------
+DROP PROCEDURE IF EXISTS sp_find_member_id_nm;
+
+CREATE OR REPLACE PROCEDURE sp_find_member_id_nm(id inout varchar, nm inout varchar)
+language plpgsql
+as $procedure$
+BEGIN
+	SELECT *
+	FROM member
+	WHERE 1=1
+	AND member_id = id
+	AND member_nm LIKE CONCAT(nm, '%');
+END;
+$procedure$;
 
 
+call sp_find_member_id_nm('test','테스트');
 
-
-
-----------------------------------------------------------
-
-
-
+-------------------------------------------------------------------

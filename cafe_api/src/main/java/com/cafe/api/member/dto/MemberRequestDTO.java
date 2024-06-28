@@ -8,6 +8,9 @@ public class MemberRequestDTO {
 
     private Integer mbrNo;
 
-    @Column(name = "member_id", nullable = false)
+    @Column(name = "member_id")
     private String id;
+
+    @Column(name = "member_nm")
+    private String name;
 }

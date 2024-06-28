@@ -1,5 +1,6 @@
 package com.cafe.api.member.service;
 
+import com.cafe.api.member.dto.MemberRequestDTO;
 import com.cafe.api.member.model.Member;
 import com.cafe.api.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,11 @@ public class MemberService {
 		return member;
 	}
 
-	public List<Member> findByNm(Member member) {
-		List<Member> members = memberRepository.searchMemberNm(member);
+	public List<Member> searchMember(MemberRequestDTO requestDTO) {
+        Member member = new Member();
+        member.setId(requestDTO.getId());
+        member.setName(requestDTO.getName());
+		List<Member> members = memberRepository.searchMember(member);
 		return members.isEmpty() ? Collections.emptyList() : members.stream().toList();
 	}
 
