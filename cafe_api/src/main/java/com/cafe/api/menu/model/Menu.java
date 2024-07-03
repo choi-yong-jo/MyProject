@@ -24,4 +24,11 @@ public class Menu {
 
     private String menuUrl;
 
+    public Menu(String menuId, String upMenuId, String menuNm, String menuUrl) {
+        this.menuId = menuId;
+        this.upMenuId = upMenuId;
+        this.menuNm = menuNm;
+        this.menuUrl = menuUrl;
+    }
+
 }
